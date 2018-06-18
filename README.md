@@ -1,6 +1,11 @@
 # Product Microservices
 
-Possible calls:
+__To compile and run:__
+
+$ mvn spring-boot:run
+
+
+__Possible calls:__
 
 1. GET All products
 	- http://localhost:8092/products/
