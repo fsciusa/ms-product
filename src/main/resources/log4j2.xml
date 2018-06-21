@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyMMddHHmmss}\t%p\t%c\t%msg\t%n" />
+        </Console>
+        <File name="File" fileName="../log/ms-product.log">
+            <PatternLayout pattern="%d{yyMMddHHmmss}\t%p\t%c\t%msg\t%n" />
+        </File>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="microservices.product" level="info" additivity="false">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="File" />
+        </Logger>
+        <Root level="error">
+            <AppenderRef ref="Console" />
+        </Root>
+    </Loggers>
+</Configuration>
