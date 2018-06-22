@@ -1,2 +1,2 @@
-insert into product values(10001, 'Book', 100);
-insert into product values(10002, 'Coffee', 5);
+insert into product values(1, 'Book', 100);
+insert into product values(2, 'Coffee', 5);
