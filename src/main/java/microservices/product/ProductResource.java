@@ -48,9 +48,11 @@ public class ProductResource {
 
     @GetMapping("/price/{id}/cid/{cid}/caller/{caller}")
     public double getPrice(@PathVariable int id, @PathVariable int cid, @PathVariable String caller) {
-        logger.info("RES\t{}\t{}\tproduct\t/price/{}", cid, caller, id);
         Optional<Product> one = productReposity.findById(id);
-        return one.get().getPrice();
+        double diff = Math.random();
+        double price = one.get().getPrice()*(1+diff);
+        logger.info("RES\t{}\t{}\tproduct\t/price/{}\t{}", cid, caller, id, price);
+        return price;
     }
 
     @PostMapping("/create")
