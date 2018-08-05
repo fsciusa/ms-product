@@ -23,36 +23,20 @@ public class ProductResource {
     private ProductReposity productReposity;
 
     @GetMapping("/all")
-    public List<Product> getAll() {
-        return productReposity.findAll();
-    }
-
-    @GetMapping("/all/cid/{cid}/caller/{caller}")
-    public List<Product> getAll(@PathVariable int cid, @PathVariable String caller) {
-        logger.info("RES\t{}\t{}\tproduct\t/all/", cid, caller);
+    public List<Product> getAll(
+            @RequestHeader("correlationId") String correlationId,
+            @RequestHeader("callerId") String callerId) {
+        logger.info("RES\t{}\t{}\tproduct\t/all/", correlationId, callerId);
         return productReposity.findAll();
     }
 
     @GetMapping("/{id}")
-    public Product getOne(@PathVariable int id) {
+    public Product getOne(@PathVariable int id,
+        @RequestHeader("correlationId") String correlationId,
+        @RequestHeader("callerId") String callerId) {
+        logger.info("RES\t{}\t{}\tproduct\t/{}/", correlationId, callerId, id);
         Optional<Product> one = productReposity.findById(id);
         return one.get();
-    }
-
-    @GetMapping("/{id}/cid/{cid}/caller/{caller}")
-    public Product getOne(@PathVariable int id, @PathVariable int cid, @PathVariable String caller) {
-        logger.info("RES\t{}\t{}\tproduct\t/{}", cid, caller, id);
-        Optional<Product> one = productReposity.findById(id);
-        return one.get();
-    }
-
-    @GetMapping("/price/{id}/cid/{cid}/caller/{caller}")
-    public double getPrice(@PathVariable int id, @PathVariable int cid, @PathVariable String caller) {
-        Optional<Product> one = productReposity.findById(id);
-        double diff = Math.random();
-        double price = one.get().getPrice()*(1+diff);
-        logger.info("RES\t{}\t{}\tproduct\t/price/{}\t{}", cid, caller, id, price);
-        return price;
     }
 
     @PostMapping("/create")

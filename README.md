@@ -7,21 +7,17 @@ $ mvn spring-boot:run
 
 __Possible calls:__
 
-1. GET All products
-	- http://localhost:8092/products/
+1. GET products
+	- http://localhost:8092/product/all
+	- http://localhost:8092/product/1
+	- http://localhost:8092/product/2
 
-2. GET A specific product
-	- http://localhost:8092/products/10001
-	- http://localhost:8092/products/10002
+2. POST a product (create)
+	- http://localhost:8092/product/create
 
-3. POST a product (create)
-	- http://localhost:8092/products/
+3. PUT a product (update)
+    - http://localhost:8092/product/update/{id}
+   	- http://localhost:8092/product/update/{id}/price/{price}
 
 4. DELETE a product
-	- http://localhost:8092/products/{id}
-
-5. PUT a product (update)
-	- http://localhost:8092/products/{id}
-
-
-
+   	- http://localhost:8092/product/delete/{id}
